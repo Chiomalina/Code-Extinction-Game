@@ -6,6 +6,8 @@ import { languages } from './Components/languages'
 function App() {
   const [currentWord, setCurrentWord] = useState("react")
 
+  const alphabet = "abcdefghijklmnopqrstuvwsyz"
+
   const letterElement = currentWord.split("").map((letter, index) => (
     <span key={index}>{letter.toLocaleUpperCase()}</span>
   ))
@@ -26,6 +28,12 @@ function App() {
       )
     })
 
+    const keyboardElements = alphabet.split("").map((letter, index) => (
+      <button key={index}>
+        {letter.toUpperCase()}
+        </button>
+    ))
+
   return (
     <>
       <Header
@@ -45,6 +53,13 @@ function App() {
       <section className="word">
         {letterElement}
       </section>
+
+      <section className="keyboard">
+        {keyboardElements}
+      </section>
+
+      <section className="new-game">New Game</section>
+
     </>
   )
 }
