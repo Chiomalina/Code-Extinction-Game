@@ -5,8 +5,15 @@ import { languages } from './Components/languages'
 
 function App() {
   const [currentWord, setCurrentWord] = useState("react")
+  const [guessedLetters, setGuessedLetters] = useState([])
+  console.log(guessedLetters)
+
 
   const alphabet = "abcdefghijklmnopqrstuvwsyz"
+
+  function addGuessedLetter(letter) {
+    setGuessedLetters(prevLetters => [...prevLetters, letter])
+  }
 
   const letterElement = currentWord.split("").map((letter, index) => (
     <span key={index}>{letter.toLocaleUpperCase()}</span>
@@ -29,7 +36,9 @@ function App() {
     })
 
     const keyboardElements = alphabet.split("").map((letter, index) => (
-      <button key={index}>
+      <button 
+      key={index} 
+      onClick={() => addGuessedLetter(letter)}>
         {letter.toUpperCase()}
         </button>
     ))
