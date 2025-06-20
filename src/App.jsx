@@ -4,6 +4,13 @@ import Header from "./Components/Header"
 import { languages } from './Components/languages'
 
 function App() {
+  const [currentWord, setCurrentWord] = useState("react")
+
+  const letterElement = currentWord.split("").map((letter, index) => (
+    <span key={index}>{letter.toLocaleUpperCase()}</span>
+  ))
+
+
 
   const languageElements = languages.map(lang => {
     const styles = {
@@ -33,6 +40,10 @@ function App() {
 
       <section className="language-chips">
           {languageElements}
+      </section>
+
+      <section className="word">
+        {letterElement}
       </section>
     </>
   )
