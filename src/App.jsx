@@ -16,8 +16,15 @@ function App() {
     setGuessedLetters(prevLetters => [...prevLetters, letter])
   }
 
+  // 🔥 derive wrong guesses dynamically
+  const wrongGuessCount = guessedLetters.filter(letter => !currentWord.includes(letter)).length
+  console.log(wrongGuessCount)
+
+
   const letterElement = currentWord.split("").map((letter, index) => (
-    <span key={index}>{letter.toLocaleUpperCase()}</span>
+    <span key={index}>
+        {guessedLetters.includes(letter) ? letter.toUpperCase() : ""}
+      </span>
   ))
 
 
