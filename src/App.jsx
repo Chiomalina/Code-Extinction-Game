@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import clsx from "clsx"
 import './App.css'
 import Header from "./Components/Header"
 import { languages } from './Components/languages'
@@ -35,14 +36,27 @@ function App() {
       )
     })
 
-    const keyboardElements = alphabet.split("").map((letter, index) => (
-      <button 
-      key={index} 
-      onClick={() => addGuessedLetter(letter)}>
-        {letter.toUpperCase()}
-        </button>
-    ))
+    const keyboardElements = alphabet.split("").map((letter, index) => {
+      const isGuessed = guessedLetters.includes(letter)
+      const isCorrect = isGuessed && currentWord.includes(letter)
+      const isWrong = isGuessed && !currentWord.includes(letter)
+      const className = clsx({
+        correct : isCorrect,
+        wrong : isWrong
+      })
 
+      return (
+          <button 
+            className={className}
+            key={index} 
+            onClick={() => addGuessedLetter(letter)}
+          >
+            {letter.toUpperCase()}
+        </button>
+      )
+    })
+      
+  
   return (
     <>
       <Header
